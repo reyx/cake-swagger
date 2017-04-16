@@ -2,7 +2,6 @@
   "name": "aymard-pro/cake-swagger",
   "description": "Swagger plugin for CakePHP v3",
   "type": "cakephp-plugin",
-  "minimum-stability": "stable",
   "license": "MIT",
   "version": "1.0",
   "authors": [

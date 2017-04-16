@@ -8,7 +8,6 @@
 
 use Cake\Core\Configure;
 
-Configure::write('swagger.title', '');
-Configure::write('swagger.route.path', '/api-doc');
-Configure::write('swagger.directories', []);
+Configure::write('swagger.default.route.path', '/api-doc');
+Configure::write('swagger.default.config.file', CONFIG . 'cake-swagger.php');
 Configure::write('swagger.default.json', 'http://petstore.swagger.io/v2/swagger.json');

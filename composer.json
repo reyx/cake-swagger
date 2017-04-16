@@ -3,7 +3,6 @@
   "description": "Swagger plugin for CakePHP v3",
   "type": "cakephp-plugin",
   "license": "MIT",
-  "version": "1.0",
   "authors": [
     {
       "name": "AYMARD KOUAKOU",

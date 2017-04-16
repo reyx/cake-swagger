@@ -12,8 +12,8 @@
   ],
   "require": {
     "php": ">=5.6",
-    "cakephp/cakephp": "3.4.5",
-    "zircote/swagger-php": "2.0.9"
+    "cakephp/cakephp": "3.4.*",
+    "zircote/swagger-php": "2.*"
   },
   "autoload": {
     "psr-4": {

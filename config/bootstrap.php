@@ -8,5 +8,5 @@
 
 use Cake\Core\Configure;
 
-Configure::write('swagger.default.config.file', CONFIG . 'cake-swagger.php');
-Configure::write('swagger.default.json', 'http://petstore.swagger.io/v2/swagger.json');
+Configure::write('cake-swagger.default.config.file', CONFIG . 'cake-swagger.php');
+Configure::write('cake-swagger.default.json', 'http://petstore.swagger.io/v2/swagger.json');

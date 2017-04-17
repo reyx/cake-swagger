@@ -12,10 +12,24 @@ use Cake\Core\Configure;
 use Cake\Event\Event;
 use CakeSwagger\Controller\AppController;
 use CakeSwagger\Exception\CakeSwaggerException;
+use function compact;
 use Swagger\Annotations\Swagger;
 
 class UiController extends AppController
 {
+	
+	/**
+	 * @param Event $event
+	 * @return \Cake\Http\Response|null|void
+	 * @throws \CakeSwagger\Exception\CakeSwaggerException
+	 */
+	public function beforeFilter(Event $event)
+	{
+		parent::beforeFilter($event);
+		if ($this->request->getParam('action') === 'json') {
+			$this->autoRender = false;
+		}
+	}
 	
 	/**
 	 * @param Event $event
@@ -32,16 +46,20 @@ class UiController extends AppController
 	
 	public function index()
 	{
-	
+		$url = empty(Configure::read('cake-swagger.directory')) ?
+			Configure::read('cake-swagger.default.json') :
+			['plugin' => 'CakeSwagger', 'controller' => 'Ui', 'action' => 'json'];
+		
+		$this->set(compact('url'));
 	}
 	
 	/**
-	 * Generate swagger json
+	 * Generate a swagger json
+	 *
 	 * @throws \CakeSwagger\Exception\CakeSwaggerException
 	 */
 	public function json()
 	{
-		$this->autoRender = false;
 		echo $this->scan();
 	}
 	
@@ -53,10 +71,21 @@ class UiController extends AppController
 	 */
 	private function scan(): Swagger
 	{
-		if (!is_array(Configure::read('swagger.directories'))) {
-			throw new CakeSwaggerException('Directories option must be an array');
+		$options = [];
+		if (Configure::read('cake-swagger.analyser') !== false) {
+			$options['analyser'] = Configure::read('cake-swagger.analyser');
 		}
-		return \Swagger\scan(Configure::read('swagger.directories'));
+		if (Configure::read('cake-swagger.analysis') !== false) {
+			$options['analysis'] = Configure::read('cake-swagger.analysis');
+		}
+		if (Configure::read('cake-swagger.processors') !== false) {
+			$options['processors'] = Configure::read('cake-swagger.processors');
+		}
+		if (!empty(Configure::read('cake-swagger.exclude'))) {
+			$options['exclude'] = Configure::read('cake-swagger.exclude');
+		}
+		
+		return \Swagger\scan(Configure::read('cake-swagger.directory'), $options);
 	}
 	
 }

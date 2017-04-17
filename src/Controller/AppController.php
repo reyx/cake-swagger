@@ -20,7 +20,7 @@ class AppController extends BaseController
 	{
 		parent::beforeFilter($event);
 		// Require a config file
-		$config = new File(Configure::read('swagger.default.config.file'));
+		$config = new File(Configure::read('cake-swagger.default.config.file'));
 		if (!$config->exists()) {
 			throw new CakeSwaggerException('File cake-swagger.php is required.');
 		}

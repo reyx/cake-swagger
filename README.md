@@ -28,7 +28,10 @@
     ```bash
     Plugin::load('CakeSwagger', ['routes' => true, 'bootstrap' => true]);
     ```
-3. Browsing to `http://your_app_uri/api/ui` should now produce the
+
+3. Create the configuration file `/config/cake-swagger.php` if not exists. See #Configuration section
+
+4. Browsing to `http://your_app_uri/api/ui` should now produce the
 [Swagger-UI](http://petstore.swagger.io/) interface:
 
     ![Default UI index](http://2434zd29misd3e4a4f1e73ki.wpengine.netdna-cdn.com/wp-content/uploads/2017/04/swagger-UI-e1491843286926.png)

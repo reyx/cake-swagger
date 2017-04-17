@@ -46,7 +46,7 @@ class UiController extends AppController
 	
 	public function index()
 	{
-		$url = empty(Configure::read('cake-swagger.directory')) ?
+		$url = (count(Configure::read('cake-swagger.directory')) === 0) ?
 			Configure::read('cake-swagger.default.json') :
 			['plugin' => 'CakeSwagger', 'controller' => 'Ui', 'action' => 'json'];
 		

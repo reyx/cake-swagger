@@ -39,7 +39,7 @@
 ## Configuration
 
 All configuration for this plugin is done through the `/config/cake-swagger.php`
-configuration file. TLDR full example below.
+configuration file. Full example below.
 
 ```php
 <?php

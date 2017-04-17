@@ -44,8 +44,6 @@ configuration file. Full example below.
 ```php
 <?php
 
-use Cake\Core\Configure;
-
 return [
 	'CakeSwagger' => [
 		'ui' => [

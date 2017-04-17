@@ -8,10 +8,10 @@
 
 namespace CakeSwagger\Controller;
 
-use Cake\Core\Configure;
+use function array_key_exists;
 use Cake\Event\Event;
+use Cake\Routing\Router;
 use CakeSwagger\Controller\AppController;
-use CakeSwagger\Exception\CakeSwaggerException;
 use function compact;
 use Swagger\Annotations\Swagger;
 
@@ -44,11 +44,19 @@ class UiController extends AppController
 		}
 	}
 	
+	/**
+	 *
+	 * @throws \Cake\Core\Exception\Exception
+	 */
 	public function index()
 	{
-		$url = (count(Configure::read('cake-swagger.directory')) === 0) ?
-			Configure::read('cake-swagger.default.json') :
-			['plugin' => 'CakeSwagger', 'controller' => 'Ui', 'action' => 'json'];
+		$url = array_key_exists('directory', $this->config) && empty($this->config['directory']) ?
+			'http://petstore.swagger.io/v2/swagger.json' :
+			Router::url([
+				'plugin' => 'CakeSwagger',
+				'controller' => 'Ui',
+				'action' => 'json'
+			], true);
 		
 		$this->set(compact('url'));
 	}
@@ -60,7 +68,7 @@ class UiController extends AppController
 	 */
 	public function json()
 	{
-		echo $this->scan();
+		echo $this->_scan();
 	}
 	
 	/**
@@ -69,23 +77,9 @@ class UiController extends AppController
 	 * @return Swagger
 	 * @throws \CakeSwagger\Exception\CakeSwaggerException
 	 */
-	private function scan(): Swagger
+	private function _scan(): Swagger
 	{
-		$options = [];
-		if (Configure::read('cake-swagger.analyser') !== false) {
-			$options['analyser'] = Configure::read('cake-swagger.analyser');
-		}
-		if (Configure::read('cake-swagger.analysis') !== false) {
-			$options['analysis'] = Configure::read('cake-swagger.analysis');
-		}
-		if (Configure::read('cake-swagger.processors') !== false) {
-			$options['processors'] = Configure::read('cake-swagger.processors');
-		}
-		if (!empty(Configure::read('cake-swagger.exclude'))) {
-			$options['exclude'] = Configure::read('cake-swagger.exclude');
-		}
-		
-		return \Swagger\scan(Configure::read('cake-swagger.directory'), $options);
+		return \Swagger\scan($this->config['directory'], $this->options);
 	}
 	
 }

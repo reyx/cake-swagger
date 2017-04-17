@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 <html lang="en">
 <head>
 	<?= $this->Html->charset() ?>
-	<title><?= Configure::read('swagger.title') ?></title>
+	<title><?= Configure::read('CakeSwagger.ui.title') ?></title>
 	<?= $this->Html->css([
 		'https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700',
 		'CakeSwagger./assets/swagger-ui.css'

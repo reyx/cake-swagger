@@ -3,7 +3,6 @@
 namespace CakeSwagger\Controller;
 
 use App\Controller\AppController as BaseController;
-use function array_key_exists;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Filesystem\File;
@@ -67,6 +66,7 @@ class AppController extends BaseController
 	public function beforeFilter(Event $event)
 	{
 		parent::beforeFilter($event);
+		
 		$this->viewBuilder()->setLayout('CakeSwagger.default');
 	}
 	

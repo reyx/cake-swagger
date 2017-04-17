@@ -46,11 +46,18 @@ configuration file. TLDR full example below.
 
 use Cake\Core\Configure;
 
-Configure::write('cake-swagger.processors', false);
-Configure::write('cake-swagger.analysis', false);
-Configure::write('cake-swagger.analyser', false);
-Configure::write('cake-swagger.directory', []);
-Configure::write('cake-swagger.exclude', []);
+return [
+	'CakeSwagger' => [
+		'ui' => [
+			'title' => 'CakePHP Swagger plugin'
+		],
+		'route' => [
+			'path' => '/api'
+		],
+		'directory' => [],
+		'exclude' => []
+	]
+];
 ```
 
 ## Additional Reading

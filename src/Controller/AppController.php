@@ -35,6 +35,9 @@ class AppController extends BaseController
 		]
 	];
 	
+	/**
+	 * Initialize
+	 */
 	public function initialize()
 	{
 		parent::initialize();
@@ -65,6 +68,14 @@ class AppController extends BaseController
 	{
 		parent::beforeFilter($event);
 		$this->viewBuilder()->setLayout('CakeSwagger.default');
+	}
+	
+	/**
+	 * @param Event $event
+	 */
+	public function beforeRender(Event $event)
+	{
+		parent::beforeRender($event);
 	}
 	
 }

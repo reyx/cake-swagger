@@ -45,6 +45,7 @@ class UiController extends AppController
 	}
 	
 	/**
+	 * Index method
 	 *
 	 * @throws \Cake\Core\Exception\Exception
 	 */
